@@ -1,0 +1,18 @@
+############# CREATE A USER
+
+POST http://localhost:8080/users
+Content-Type: application/json  
+
+{
+    "name": "adihaj Doe",
+    "email": "adihaj@gmail.com"
+}
+
+
+
+############# GET ALL USERS
+GET http://localhost:8080/users
+
+
+############# CREATE A USER BY ID
+GET http://localhost:8080/users/1
