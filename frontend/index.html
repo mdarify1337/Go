@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User-Book Manager</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    * {
+      font-family: 'Inter', sans-serif;
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .gradient-bg-alt {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    .gradient-bg-green {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+    
+    .hover-glow {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-glow:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .floating-animation {
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .pulse-glow {
+      animation: pulse-glow 2s infinite;
+    }
+    
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.4); }
+      50% { box-shadow: 0 0 30px rgba(102, 126, 234, 0.8); }
+    }
+    
+    .card-hover {
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    .card-hover:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn-modern {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-modern::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+    
+    .btn-modern:hover::before {
+      left: 100%;
+    }
+    
+    .input-modern {
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+      background: rgba(255, 255, 255, 0.9);
+    }
+    
+    .input-modern:focus {
+      transform: scale(1.02);
+      border-color: #667eea;
+      box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+    }
+  </style>
+</head>
+<body class="gradient-bg min-h-screen">
+  <!-- Animated Background Elements -->
+  <div class="fixed inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-40 -right-40 w-80 h-80 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 floating-animation"></div>
+    <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 floating-animation" style="animation-delay: 2s;"></div>
+    <div class="absolute top-40 left-40 w-80 h-80 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 floating-animation" style="animation-delay: 4s;"></div>
+  </div>
+
+  <div class="relative z-10 container mx-auto p-6 max-w-7xl">
+    <!-- Header -->
+    <div class="text-center mb-12">
+      <h1 class="text-6xl font-bold text-white mb-4 floating-animation">
+        <span class="bg-gradient-to-r from-yellow-400 to-pink-400 bg-clip-text text-transparent">📚</span>
+        User & Book Manager
+      </h1>
+      <p class="text-white/80 text-xl font-light">Manage your digital library with style</p>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="grid xl:grid-cols-3 lg:grid-cols-2 gap-8">
+      
+      <!-- Create User Card -->
+      <div class="glass-effect rounded-3xl p-8 card-hover hover-glow">
+        <div class="flex items-center mb-6">
+          <div class="w-12 h-12 gradient-bg-alt rounded-full flex items-center justify-center text-2xl mr-4">
+            ➕
+          </div>
+          <h2 class="text-2xl font-bold text-white">Create User</h2>
+        </div>
+        <div class="space-y-4">
+          <input 
+            id="username" 
+            class="input-modern w-full px-6 py-4 rounded-2xl text-gray-800 placeholder-gray-500 font-medium focus:outline-none" 
+            placeholder="Enter full name" 
+          />
+          <input 
+            id="email" 
+            class="input-modern w-full px-6 py-4 rounded-2xl text-gray-800 placeholder-gray-500 font-medium focus:outline-none" 
+            placeholder="Enter email address" 
+          />
+          <button 
+            id="createUserBtn" 
+            class="btn-modern w-full gradient-bg-alt text-white px-6 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+          >
+            Create User
+          </button>
+        </div>
+      </div>
+
+      <!-- Create Book Card -->
+      <div class="glass-effect rounded-3xl p-8 card-hover hover-glow">
+        <div class="flex items-center mb-6">
+          <div class="w-12 h-12 gradient-bg-green rounded-full flex items-center justify-center text-2xl mr-4">
+            📖
+          </div>
+          <h2 class="text-2xl font-bold text-white">Add New Book</h2>
+        </div>
+        <div class="space-y-4">
+          <input 
+            id="title" 
+            class="input-modern w-full px-6 py-4 rounded-2xl text-gray-800 placeholder-gray-500 font-medium focus:outline-none" 
+            placeholder="Book title" 
+          />
+          <input 
+            id="author" 
+            class="input-modern w-full px-6 py-4 rounded-2xl text-gray-800 placeholder-gray-500 font-medium focus:outline-none" 
+            placeholder="Author name" 
+          />
+          <input 
+            id="userId" 
+            type="number" 
+            class="input-modern w-full px-6 py-4 rounded-2xl text-gray-800 placeholder-gray-500 font-medium focus:outline-none" 
+            placeholder="User ID" 
+          />
+          <button 
+            id="createBookBtn" 
+            class="btn-modern w-full gradient-bg-green text-white px-6 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+          >
+            Add to Library
+          </button>
+        </div>
+      </div>
+
+      <!-- Users List Card -->
+      <div class="glass-effect rounded-3xl p-8 card-hover hover-glow xl:col-span-1 lg:col-span-2 xl:col-span-1">
+        <div class="flex items-center justify-between mb-6">
+          <div class="flex items-center">
+            <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center text-2xl mr-4">
+              👤
+            </div>
+            <h2 class="text-2xl font-bold text-white">Active Users</h2>
+          </div>
+          <button 
+            id="getUsersBtn" 
+            class="btn-modern gradient-bg text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 pulse-glow"
+          >
+            Refresh
+          </button>
+        </div>
+        <div class="max-h-96 overflow-y-auto custom-scrollbar">
+          <ul id="usersList" class="space-y-3"></ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Books List Card - Full Width -->
+    <div class="glass-effect rounded-3xl p-8 card-hover hover-glow mt-8">
+      <div class="flex items-center justify-between mb-6">
+        <div class="flex items-center">
+          <div class="w-12 h-12 gradient-bg-alt rounded-full flex items-center justify-center text-2xl mr-4">
+            📚
+          </div>
+          <h2 class="text-2xl font-bold text-white">Library Collection</h2>
+        </div>
+        <button 
+          id="getBooksBtn" 
+          class="btn-modern gradient-bg-alt text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 pulse-glow"
+        >
+          Refresh
+        </button>
+      </div>
+      <div class="max-h-96 overflow-y-auto custom-scrollbar">
+        <ul id="booksList" class="grid md:grid-cols-2 lg:grid-cols-3 gap-4"></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom Scrollbar Styles -->
+  <style>
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 255, 255, 0.5);
+    }
+  </style>
+
+  <script src="main.js"></script>
+</body>
+</html>

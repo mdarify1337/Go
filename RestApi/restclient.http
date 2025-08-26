@@ -4,8 +4,8 @@ POST http://localhost:8080/users
 Content-Type: application/json  
 
 {
-    "name": "adihaj Doe",
-    "email": "adihaj@gmail.com"
+    "name": "adihaj Doe2",
+    "email": "adihaj2@gmail.com"
 }
 
 
