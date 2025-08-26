@@ -1,0 +1,29 @@
+steps for start go backedn project
+=> Go to your project folder: cd folder-name
+=> Initialize module with a proper path:
+    go mod init github.com/github-username/folder-name
+=> Now you can install dependencies:
+    {
+        * go get github.com/gin-gonic/gin
+        * go get gorm.io/gorm
+        * go get gorm.io/driver/postgres
+    }
+
+=> structure of folders project
+    * main file => main.go
+    * config folder
+        config/config.go
+    * controllers
+    * modules
+    * files go.mod and go.som contain 
+        the dependencies of project
+
+=> install db dependencies {
+    sudo apt update
+    sudo apt install postgresql postgresql-contrib -y
+    sudo systemctl start postgresql
+    sudo systemctl enable postgresql
+}
+
+=> then run project
+    go run main.go
